@@ -1,0 +1,80 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const { id } = Astro.params;
+const postRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+const post = await postRes.json();
+export function getStaticPaths() {
+  return [
+    {params: {id: '1'}},
+    {params: {id: '2'}},
+    {params: {id: '3'}},
+    {params: {id: '4'}},
+    {params: {id: '5'}},
+    {params: {id: '6'}},
+    {params: {id: '7'}},
+    {params: {id: '8'}},
+    {params: {id: '9'}},
+  ];
+}
+---
+
+<html>
+<head>
+  <title>{post.title}</title>
+</head>
+<body>
+  <Header />
+    <div class="container">
+      <article>
+        <h1>{post.title}</h1>
+        <p>{post.body}</p>
+        <a href="/">Volver al inicio</a>
+      </article>
+    </div>
+  <Footer />
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 133px;
+  }
+  article h1 {
+    font-size: 2 em;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+  }
+
+  article p {
+    font-size: 1em;
+    color: #4c4b4b;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-justify: distribute-all-lines;
+    padding: 10px;
+  }
+
+  article a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  article a:hover {
+    text-decoration: underline;
+    color: rgb(134, 25, 25);
+    text-decorationor:rgb(134, 25, 25) ;
+  }
+
+</style>
